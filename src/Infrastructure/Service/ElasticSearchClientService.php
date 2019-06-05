@@ -8,6 +8,7 @@
 namespace Proshut\CQRSBundle\Infrastructure\Persistence\Service;
 
 use Elasticsearch\ClientBuilder;
+use Proshut\CQRSBundle\Exception\ElasticSearchReadModelPersistenceException;
 
 /**
  * Description of ElasticSearchClientService
@@ -17,7 +18,6 @@ use Elasticsearch\ClientBuilder;
 class ElasticSearchClientService {
 
     private $clientBuilder;
-
     public const INDEX = 'proshut';
 
     public function __construct( ClientBuilder $clientBuilder ) {
@@ -27,5 +27,21 @@ class ElasticSearchClientService {
     public function create() {
         return $this->clientBuilder::create()->setHosts([ [ 'host' => $_ENV[ 'ELASTICSEARCH_HOST' ],
                                                             'port' => $_ENV[ 'ELASTICSEARCH_PORT' ] ] ])->build();
+    }
+
+    public function index( array $params ) {
+        $Client = $this->create();
+        $Client->index($params);
+        $Result = $Client->index($this->params);
+        if ($Result[ '_shards' ][ 'successful' ] < 1) {
+            throw new ElasticSearchReadModelPersistenceException('error.readmodel.global.persistence');
+        }
+    }
+
+    public function search( array $params ) {
+        $Cleint = $this->create();
+        $Result = $Cleint->search($params);
+        var_dump($Result);
+        die();
     }
 }
