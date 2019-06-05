@@ -5,7 +5,7 @@
 * For the full copyright and license information, please view the LICENSE
 */
 
-namespace Proshut\CQRSBundle\Infrastructure\Persistence\Service;
+namespace Proshut\CQRSBundle\Infrastructure\Service;
 
 use Elasticsearch\ClientBuilder;
 use Proshut\CQRSBundle\Exception\ElasticSearchReadModelPersistenceException;
