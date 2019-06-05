@@ -8,7 +8,7 @@
 namespace Proshut\CQRSBundle\Handler;
 
 use Proshut\CQRSBundle\Event\EventRecorderInterface;
-use Proshut\CQRSBundle\Infrastructure\Persistence\EventStore\DocumentEventStore;
+use Proshut\CQRSBundle\Infrastructure\EventStore\DocumentEventStore;
 use Symfony\Component\Messenger\MessageBusInterface;
 
 /**
