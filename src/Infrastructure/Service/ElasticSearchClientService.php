@@ -40,8 +40,10 @@ class ElasticSearchClientService {
 
     public function search( array $params ) {
         $Cleint = $this->create();
+
         $Result = $Cleint->search($params);
-        var_dump($Result);
-        die();
+        return $Result[ 'hits' ] ? [ 'total'   => $Result[ 'hits' ][ 'total' ][ 'value' ],
+                                     'members' => $Result[ 'hits' ][ 'hits' ] ] : [ 'total'   => 0,
+                                                                                    'members' => [] ];
     }
 }
