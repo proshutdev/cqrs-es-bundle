@@ -8,7 +8,7 @@
 namespace Proshut\CQRSBundle\Middleware;
 
 use Proshut\CQRSBundle\Command\CommandInterface;
-use Proshut\CQRSBundle\Domain\Shared\Service\DomainUniqueFieldService;
+use Proshut\CQRSBundle\Service\DomainUniqueFieldService;
 use Symfony\Component\Messenger\Envelope;
 use Symfony\Component\Messenger\Middleware\MiddlewareInterface;
 use Symfony\Component\Messenger\Middleware\StackInterface;
