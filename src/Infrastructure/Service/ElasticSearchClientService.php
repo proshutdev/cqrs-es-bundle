@@ -39,11 +39,14 @@ class ElasticSearchClientService {
     }
 
     public function search( array $params ) {
-        $Cleint = $this->create();
-
-        $Result = $Cleint->search($params);
-        return $Result[ 'hits' ] ? [ 'total'   => $Result[ 'hits' ][ 'total' ][ 'value' ],
-                                     'members' => $Result[ 'hits' ][ 'hits' ] ] : [ 'total'   => 0,
-                                                                                    'members' => [] ];
+        $Response = [ 'hits'  => [],
+                      'total' => 0 ];
+        $Cleint   = $this->create();
+        $Result   = $Cleint->search($params);
+        if ($Result) {
+            $Response[ 'hits' ] = $Result[ 'hits' ][ 'hits' ];
+            $Result[ 'total' ]  = $Result[ 'hits' ][ 'total' ][ 'value' ];
+        }
+        return $Response;
     }
 }
