@@ -45,7 +45,7 @@ class ElasticSearchClientService {
         $Result   = $Cleint->search($params);
         if ($Result) {
             $Response[ 'hits' ] = $Result[ 'hits' ][ 'hits' ];
-            $Result[ 'total' ]  = $Result[ 'hits' ][ 'total' ][ 'value' ];
+            $Response[ 'total' ]  = $Result[ 'hits' ][ 'total' ][ 'value' ];
         }
         return $Response;
     }
