@@ -60,6 +60,6 @@ final class DocumentEventStore {
             $Event->withVersion($eventStream->getVersion());
             $Events[] = $Event;
         }
-        return $Events;
+        return EventHistory::with($Events);
     }
 }
