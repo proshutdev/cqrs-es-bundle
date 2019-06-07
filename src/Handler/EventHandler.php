@@ -9,7 +9,7 @@ namespace Proshut\CQRSBundle\Handler;
 
 use Proshut\CQRSBundle\Event\DomainEventInterface;
 use Proshut\CQRSBundle\Exception\InvalidProjectionException;
-use Proshut\CQRSBundle\Projection\Shared\ReadModelProjectorInterface;
+use Proshut\CQRSBundle\Projection\ReadModelProjectorInterface;
 use Psr\Container\ContainerInterface;
 use Symfony\Component\Messenger\Handler\MessageHandlerInterface;
 
