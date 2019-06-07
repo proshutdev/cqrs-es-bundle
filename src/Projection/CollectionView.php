@@ -31,6 +31,7 @@ class CollectionView {
      * @throws \Symfony\Component\Serializer\Exception\ExceptionInterface
      */
     public function init( array $data, string $fqcn ) {
+        $this->type     = 'hydra:Collection';
         $this->resource = $fqcn::getResourceName();
         $this->context  = sprintf("/context/%s", $this->resource);
         $this->id       = $this->request->getRequestUri();
