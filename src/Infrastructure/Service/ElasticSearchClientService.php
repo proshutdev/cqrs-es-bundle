@@ -44,9 +44,13 @@ class ElasticSearchClientService {
         $Cleint   = $this->create();
         $Result   = $Cleint->search($params);
         if ($Result) {
-            $Response[ 'hits' ] = $Result[ 'hits' ][ 'hits' ];
-            $Response[ 'total' ]  = $Result[ 'hits' ][ 'total' ][ 'value' ];
+            $Response[ 'hits' ]  = $Result[ 'hits' ][ 'hits' ];
+            $Response[ 'total' ] = $Result[ 'hits' ][ 'total' ][ 'value' ];
         }
         return $Response;
+    }
+
+    public function get( array $params ) {
+        return $this->create()->get($params);
     }
 }
