@@ -62,6 +62,5 @@ class ElasticSearchClientService {
 
     public function update( array $params ) {
         $this->create()->update($params);
-
     }
 }
