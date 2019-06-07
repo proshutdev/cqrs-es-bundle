@@ -27,10 +27,6 @@ trait ViewTrait {
         $this->request      = $requestStack->getCurrentRequest();
     }
 
-    private static function transformFromElasticIndex( array $data ) {
-        return array_merge([ 'id' => $data[ '_id' ] ], $data[ '_source' ]);
-    }
-
     /**
      * @return mixed
      */

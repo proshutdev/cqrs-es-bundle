@@ -37,7 +37,7 @@ class CollectionView {
         $this->id       = $this->request->getRequestUri();
         $this->total    = $data[ 'total' ];
         foreach ($data[ 'hits' ] as $member) {
-            $Object         = $this->denormalizer->denormalize(static::transformFromElasticIndex($member), $fqcn, 'array');
+            $Object         = $this->denormalizer->denormalize($member, $fqcn, 'array');
             $this->member[] = [ "@id" => $Object->getUri($this->request->getRequestUri()) ] + [ '@type' => $this->resource ] +
                 $this->normalizer->normalize($Object, 'array', [ 'groups' => 'collection' ]);
         }

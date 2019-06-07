@@ -41,16 +41,22 @@ class ElasticSearchClientService {
     public function search( array $params ) {
         $Response = [ 'hits'  => [],
                       'total' => 0 ];
-        $Cleint   = $this->create();
-        $Result   = $Cleint->search($params);
+        $Client   = $this->create();
+        $Result   = $Client->search($params);
         if ($Result) {
-            $Response[ 'hits' ]  = $Result[ 'hits' ][ 'hits' ];
+            $Response[ 'hits' ]  = array_map(function ( $hit ) {
+                return array_merge([ 'id' => $hit[ '_id' ] ], $hit[ '_source' ]);
+            }, $Result[ 'hits' ][ 'hits' ]);
             $Response[ 'total' ] = $Result[ 'hits' ][ 'total' ][ 'value' ];
         }
         return $Response;
     }
 
     public function get( array $params ) {
-        return $this->create()->get($params);
+        $Result = $this->create()->get($params);
+        if (!$Result) {
+            return [];
+        }
+        return array_merge([ 'id' => $Result[ '_id' ] ], $Result[ '_source' ]);
     }
 }

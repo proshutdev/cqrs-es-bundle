@@ -30,7 +30,7 @@ class ItemView {
         $this->resource = $this->type = $fqcn::getResourceName();
         $this->context  = sprintf("/context/%s", $this->resource);
         $this->id       = $this->request->getRequestUri();
-        $this->item     = $this->denormalizer->denormalize(static::transformFromElasticIndex($data), $fqcn, 'array');
+        $this->item     = $data ? $this->denormalizer->denormalize($data, $fqcn, 'array') : null;
         return $this;
     }
 
