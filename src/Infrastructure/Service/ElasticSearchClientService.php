@@ -59,4 +59,8 @@ class ElasticSearchClientService {
         }
         return array_merge([ 'id' => $Result[ '_id' ] ], $Result[ '_source' ]);
     }
+
+    public function update( array $params ) {
+        $this->create()->update($params);
+    }
 }
