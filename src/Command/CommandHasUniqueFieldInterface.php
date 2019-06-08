@@ -7,10 +7,9 @@
 
 namespace Proshut\CQRSBundle\Command;
 /**
- * Description of CommandHasUniqueField
- *
- * @author Proshut Web Development <info at proshut.biz>
+ * Interface CommandHasUniqueFieldInterface
+ * @package Proshut\CQRSBundle\Command
  */
-class CommandHasUniqueField {
+interface CommandHasUniqueFieldInterface {
 
 }
