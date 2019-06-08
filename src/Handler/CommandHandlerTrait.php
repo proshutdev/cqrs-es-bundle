@@ -43,6 +43,7 @@ trait CommandHandlerTrait {
      */
     private function dispatchEvents( EventRecorderInterface $aggregateRoot ) {
         foreach ($aggregateRoot->getRecordedEvents() as $event) {
+            usleep(100);
             $this->eventBus->dispatch($event);
         }
     }
