@@ -31,8 +31,7 @@ class ElasticSearchClientService {
 
     public function index( array $params ) {
         $Client = $this->create();
-        $Client->index($params);
-        $Result = $Client->index($this->params);
+        $Result = $Client->index($params);
         if ($Result[ '_shards' ][ 'successful' ] < 1) {
             throw new ElasticSearchReadModelPersistenceException('error.readmodel.global.persistence');
         }
