@@ -1,4 +1,0 @@
-services:
-    Proshut\CQRSBundle\:
-        resource: '../../src/*'
-        exclude: '../src/{config,Kernel.php}'
