@@ -10,6 +10,7 @@ namespace Proshut\CQRSBundle\Handler;
 use Proshut\CQRSBundle\Event\EventRecorderInterface;
 use Proshut\CQRSBundle\Infrastructure\EventStore\DocumentEventStore;
 use Symfony\Component\Messenger\MessageBusInterface;
+use Symfony\Component\Messenger\Stamp\DelayStamp;
 
 /**
  * Trait CommandHandlerTrait
@@ -43,7 +44,7 @@ trait CommandHandlerTrait {
      */
     private function dispatchEvents( EventRecorderInterface $aggregateRoot ) {
         foreach ($aggregateRoot->getRecordedEvents() as $event) {
-            $this->eventBus->dispatch($event);
+            $this->eventBus->dispatch($event, [ new DelayStamp(500) ]);
         }
     }
 }
