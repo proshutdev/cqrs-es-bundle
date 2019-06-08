@@ -7,6 +7,7 @@
 
 namespace Proshut\CQRSBundle\Middleware;
 
+use Proshut\CQRSBundle\Command\CommandHasUniqueField;
 use Proshut\CQRSBundle\Command\CommandInterface;
 use Proshut\CQRSBundle\Service\DomainUniqueFieldService;
 use Symfony\Component\Messenger\Envelope;
@@ -24,7 +25,7 @@ final class CommandUniqueFieldCheckerMiddleware implements MiddlewareInterface {
     private $uniqueFieldService;
 
     public function handle( Envelope $envelope, StackInterface $stack ): Envelope {
-        if ($envelope->last(BusNameStamp::class) && $envelope->getMessage() instanceof CommandInterface) {
+        if ($envelope->last(BusNameStamp::class) && $envelope->getMessage() instanceof CommandHasUniqueField) {
             $Command = $envelope->getMessage();
             /**
              * @var CommandInterface $Command
