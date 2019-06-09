@@ -16,15 +16,15 @@ trait ViewTrait {
     private $denormalizer;
     private $normalizer;
     private $resource;
-    private $request;
     private $context;
     private $id;
     private $type;
+    private $requestUri;
 
     public function __construct( DenormalizerInterface $denormalizer, RequestStack $requestStack, NormalizerInterface $normalizer ) {
         $this->denormalizer = $denormalizer;
         $this->normalizer   = $normalizer;
-        $this->request      = $requestStack->getCurrentRequest();
+        $this->requestUri   = strtok($requestStack->getCurrentRequest()->getRequestUri(), '?');
     }
 
     /**
@@ -53,5 +53,10 @@ trait ViewTrait {
      */
     public function getResource() {
         return $this->resource;
+    }
+
+    private static function getResourceName( string $fcqn ) {
+        $ClassParts = explode("\\", $fcqn);
+        return end($ClassParts);
     }
 }

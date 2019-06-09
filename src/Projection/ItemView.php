@@ -27,11 +27,11 @@ class ItemView {
      * @throws \Symfony\Component\Serializer\Exception\ExceptionInterface
      */
     public function init( array $data, string $fqcn ) {
-        $CurrentUri     = strtok($this->request->getRequestUri(), '?');
-        $this->resource = $this->type = $fqcn::getResourceName();
+        $this->resource = $this->type = static::getResourceName($fqcn);
         $this->context  = sprintf("/context/%s", $this->resource);
-        $this->id       = $CurrentUri;
-        $this->item     = $data ? $this->denormalizer->denormalize($data, $fqcn, 'array') : null;
+        $this->id       = $this->requestUri;
+        $this->item     = $data ?
+            $this->denormalizer->denormalize($data, $fqcn, 'array', [ 'groups' => sprintf("%s_item", strtolower($this->resource)) ]) : null;
         return $this;
     }
 

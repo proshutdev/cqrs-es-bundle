@@ -7,10 +7,6 @@
 
 namespace Proshut\CQRSBundle\Projection;
 interface ReadModelInterface {
-
-    public function getUri( string $route ): string;
-
-    public static function getResourceName(): string;
-
+    
     public function getId(): string;
 }
