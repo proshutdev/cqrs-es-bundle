@@ -27,9 +27,10 @@ class ItemView {
      * @throws \Symfony\Component\Serializer\Exception\ExceptionInterface
      */
     public function init( array $data, string $fqcn ) {
+        $CurrentUri     = strtok($this->request->getRequestUri(), '?');
         $this->resource = $this->type = $fqcn::getResourceName();
         $this->context  = sprintf("/context/%s", $this->resource);
-        $this->id       = $this->request->getRequestUri();
+        $this->id       = $CurrentUri;
         $this->item     = $data ? $this->denormalizer->denormalize($data, $fqcn, 'array') : null;
         return $this;
     }

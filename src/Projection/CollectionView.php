@@ -31,14 +31,15 @@ class CollectionView {
      * @throws \Symfony\Component\Serializer\Exception\ExceptionInterface
      */
     public function init( array $data, string $fqcn ) {
+        $CurrentUri     = strtok($this->request->getRequestUri(), '?');
         $this->type     = 'hydra:Collection';
         $this->resource = $fqcn::getResourceName();
         $this->context  = sprintf("/context/%s", $this->resource);
-        $this->id       = $this->request->getRequestUri();
+        $this->id       = $CurrentUri;
         $this->total    = $data[ 'total' ];
         foreach ($data[ 'hits' ] as $member) {
             $Object         = $this->denormalizer->denormalize($member, $fqcn, 'array');
-            $this->member[] = [ "@id" => $Object->getUri($this->request->getRequestUri()) ] + [ '@type' => $this->resource ] +
+            $this->member[] = [ "@id" => $Object->getUri($CurrentUri) ] + [ '@type' => $this->resource ] +
                 $this->normalizer->normalize($Object, 'array', [ 'groups' => 'collection' ]);
         }
         return $this;
