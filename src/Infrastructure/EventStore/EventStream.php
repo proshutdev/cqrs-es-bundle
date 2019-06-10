@@ -15,7 +15,7 @@ use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
  * @author Proshut Web Development <info at proshut.biz>
  * @MongoDB\Document()
  */
-final class EventStream {
+class EventStream {
 
     /**
      * @var string
