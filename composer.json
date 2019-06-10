@@ -16,8 +16,8 @@
     "elasticsearch/elasticsearch": "^6.7",
     "snc/redis-bundle": "^2.1",
     "ramsey/uuid": "^3.8",
-    "doctrine/mongodb-odm": "^1.2",
-    "doctrine/mongodb-odm-bundle": "^3.5",
+    "doctrine/mongodb-odm": "2.*",
+    "doctrine/mongodb-odm-bundle": "4.*",
     "symfony/messenger": "4.3.*",
     "symfony/serializer": "^4.3"
   },
