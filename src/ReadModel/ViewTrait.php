@@ -77,4 +77,8 @@ trait ViewTrait {
         $this->group = $group;
         return $this;
     }
+
+    private function isReadModel( string $fqcn ) {
+        return in_array(ReadModelInterface::class, class_implements($fqcn));
+    }
 }

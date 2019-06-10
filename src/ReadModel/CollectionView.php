@@ -30,7 +30,10 @@ class CollectionView {
      * @return $this
      * @throws \Symfony\Component\Serializer\Exception\ExceptionInterface
      */
-    public function init( array $data, string $fqcn ) {
+    public function create( array $data, string $fqcn ) {
+        if (false === $this->isReadModel($fqcn)) {
+            throw new \InvalidArgumentException('error.global.readmodel.notImplemented');
+        }
         $this->type     = 'hydra:Collection';
         $this->resource = static::getResourceName($fqcn);
         $this->context  = sprintf("/context/%s", $this->resource);

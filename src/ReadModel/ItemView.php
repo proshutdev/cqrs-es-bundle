@@ -7,6 +7,7 @@
 
 namespace Proshut\CQRSBundle\ReadModel;
 
+use Symfony\Component\Debug\Exception\ClassNotFoundException;
 use Symfony\Component\Routing\Exception\ResourceNotFoundException;
 
 /**
@@ -29,7 +30,10 @@ class ItemView {
      * @return $this
      * @throws \Symfony\Component\Serializer\Exception\ExceptionInterface
      */
-    public function init( array $data, string $fqcn ) {
+    public function create( array $data, string $fqcn ) {
+        if (false === $this->isReadModel($fqcn)) {
+            throw new \InvalidArgumentException('error.global.readmodel.notImplemented');
+        }
         if (!$data) {
             throw new ResourceNotFoundException('error.global.resource.notFound');
         }
