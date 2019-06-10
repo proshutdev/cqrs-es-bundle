@@ -6,6 +6,9 @@
 */
 
 namespace Proshut\CQRSBundle\Projection;
+
+use Symfony\Component\Routing\Exception\ResourceNotFoundException;
+
 /**
  * Description of ItemReadModel
  *
@@ -27,6 +30,9 @@ class ItemView {
      * @throws \Symfony\Component\Serializer\Exception\ExceptionInterface
      */
     public function init( array $data, string $fqcn ) {
+        if (!$data) {
+            throw new ResourceNotFoundException('error.global.resource.notFound');
+        }
         $this->resource = $this->type = static::getResourceName($fqcn);
         $this->context  = sprintf("/context/%s", $this->resource);
         $this->id       = $this->requestUri;
