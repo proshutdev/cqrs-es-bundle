@@ -140,8 +140,10 @@ trait ViewTrait {
 
     /**
      * @param string $group
+     *
+     * @return ViewTrait
      */
-    public function setGroup( string $group ): void {
+    public function setGroup( string $group ): ViewTrait {
         $this->group = $group;
         return $this;
     }
