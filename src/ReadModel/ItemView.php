@@ -5,7 +5,7 @@
 * For the full copyright and license information, please view the LICENSE
 */
 
-namespace Proshut\CQRSBundle\Projection;
+namespace Proshut\CQRSBundle\ReadModel;
 
 use Symfony\Component\Routing\Exception\ResourceNotFoundException;
 
