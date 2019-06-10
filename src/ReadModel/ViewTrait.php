@@ -143,5 +143,6 @@ trait ViewTrait {
      */
     public function setGroup( string $group ): void {
         $this->group = $group;
+        return $this;
     }
 }
