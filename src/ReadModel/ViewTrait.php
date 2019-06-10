@@ -20,6 +20,7 @@ trait ViewTrait {
     private $id;
     private $type;
     private $requestUri;
+    private $group = null;
 
     public function __construct( DenormalizerInterface $denormalizer, RequestStack $requestStack, NormalizerInterface $normalizer ) {
         $this->denormalizer = $denormalizer;
@@ -58,5 +59,22 @@ trait ViewTrait {
     private static function getResourceName( string $fcqn ) {
         $ClassParts = explode("\\", $fcqn);
         return end($ClassParts);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getGroup() {
+        return $this->group;
+    }
+
+    /**
+     * @param string $group
+     *
+     * @return ViewTrait
+     */
+    public function setGroup( string $group ) {
+        $this->group = $group;
+        return $this;
     }
 }

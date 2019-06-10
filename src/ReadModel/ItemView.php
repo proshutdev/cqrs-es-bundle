@@ -36,8 +36,8 @@ class ItemView {
         $this->resource = $this->type = static::getResourceName($fqcn);
         $this->context  = sprintf("/context/%s", $this->resource);
         $this->id       = $this->requestUri;
-        $this->item     = $data ?
-            $this->denormalizer->denormalize($data, $fqcn, 'array', [ 'groups' => sprintf("%s_item", strtolower($this->resource)) ]) : null;
+        $this->item     = $data ? $this->denormalizer->denormalize($data, $fqcn, 'array', [ 'group' => $this->group ?:
+            sprintf("%s_item", strtolower($this->resource)) ]) : null;
         return $this;
     }
 

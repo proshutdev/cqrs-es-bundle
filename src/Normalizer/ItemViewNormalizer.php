@@ -35,8 +35,9 @@ class ItemViewNormalizer implements NormalizerInterface {
         $Data[ '@type' ]    = $object->getType();
         $Data[ '@id' ]      = $object->getId();
         $Response           = $object->getItem() ? $Data + $this->normalizer->normalize($object->getItem(), 'array',
-                                                                                        [ 'groups' => sprintf("%s_item",
-                                                                                                              strtolower($object->getResource())) ]) :
+                                                                                        [ 'group' => $object->getGroup() ?:
+                                                                                            sprintf("%s_item",
+                                                                                                    strtolower($object->getResource())) ]) :
             null;
         return $Response;
     }
