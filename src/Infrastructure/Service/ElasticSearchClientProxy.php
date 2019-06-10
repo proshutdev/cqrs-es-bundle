@@ -11,11 +11,11 @@ use Elasticsearch\ClientBuilder;
 use Proshut\CQRSBundle\Exception\ElasticSearchReadModelPersistenceException;
 
 /**
- * Description of ElasticSearchClientService
+ * Description of ElasticSearchClientProxy
  *
  * @author Proshut Web Development <info at proshut.biz>
  */
-class ElasticSearchClientService {
+class ElasticSearchClientProxy {
 
     private $clientBuilder;
     public const INDEX = 'proshut';
