@@ -7,6 +7,7 @@
 
 namespace Proshut\CQRSBundle\Normalizer;
 
+use Proshut\CQRSBundle\ReadModel\ItemView;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
