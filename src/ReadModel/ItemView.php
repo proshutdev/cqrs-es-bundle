@@ -7,7 +7,6 @@
 
 namespace Proshut\CQRSBundle\ReadModel;
 
-use Symfony\Component\Debug\Exception\ClassNotFoundException;
 use Symfony\Component\Routing\Exception\ResourceNotFoundException;
 
 /**

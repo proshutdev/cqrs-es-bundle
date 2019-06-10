@@ -6,7 +6,14 @@
 */
 
 namespace Proshut\CQRSBundle\ReadModel;
+/**
+ * Interface ReadModelInterface
+ * @package Proshut\CQRSBundle\ReadModel
+ */
 interface ReadModelInterface {
-    
+
+    /**
+     * @return string
+     */
     public function getId(): string;
 }
