@@ -143,7 +143,7 @@ trait ViewTrait {
      *
      * @return ViewTrait
      */
-    public function setGroup( string $group ): ViewTrait {
+    public function setGroup( string $group ): self {
         $this->group = $group;
         return $this;
     }
