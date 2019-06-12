@@ -11,6 +11,7 @@ use Doctrine\ODM\MongoDB\DocumentManager;
 use Proshut\CQRSBundle\Event\DomainEventInterface;
 use Proshut\CQRSBundle\Event\EventRecorderInterface;
 use Proshut\CQRSBundle\Exception\EventStorePersistenceException;
+use Proshut\CQRSBundle\Exception\EventStreamNotFoundException;
 use Symfony\Component\Serializer\SerializerInterface;
 
 /**
@@ -52,6 +53,9 @@ final class DocumentEventStore {
     public function load( string $id ) {
         $Events       = [];
         $EventStreams = $this->documentManager->getRepository(EventStream::class)->findBy([ 'guid' => $id ]);
+        if (!$EventStreams) {
+            throw new EventStreamNotFoundException('error.global.eventstream.invalidGuid');
+        }
         foreach ($EventStreams as $eventStream) {
             /**
              * @var DomainEventInterface $Event
