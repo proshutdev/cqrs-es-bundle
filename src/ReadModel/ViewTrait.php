@@ -132,9 +132,9 @@ trait ViewTrait {
     }
 
     /**
-     * @return string
+     * @return null|string
      */
-    public function getGroup(): string {
+    public function getGroup(): ?string {
         return $this->group;
     }
 
