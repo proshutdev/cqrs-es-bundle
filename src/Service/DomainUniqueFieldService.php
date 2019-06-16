@@ -65,7 +65,7 @@ final class DomainUniqueFieldService {
      * @throws \Symfony\Component\Serializer\Exception\ExceptionInterface
      */
     private function setFields() {
-        $this->fields = $this->normalizer->normalize($this->command, 'array', [ 'groups' => 'unique' ]);
+        $this->fields = $this->normalizer->normalize($this->command, 'array', [ 'group' => 'unique' ]);
     }
 
     /**
