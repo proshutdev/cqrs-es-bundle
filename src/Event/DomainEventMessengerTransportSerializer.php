@@ -34,8 +34,8 @@ final class DomainEventMessengerTransportSerializer implements SerializerInterfa
         /**
          * @var DomainEventInterface $Message
          */
-        $Message   = $encodedEnvelope[ 'headers' ][ 'event' ]::deserialize(json_decode($encodedEnvelope[ 'body' ], true),
-                                                                           $encodedEnvelope[ 'headers' ][ 'aggregateId' ]);
+        $Message = $this->serializer->deserialize($encodedEnvelope[ 'body' ], $encodedEnvelope[ 'headers' ][ 'event' ], 'json',
+                                                  [ 'group' => 'serializable' ]);
         $BusStamp  = new BusNameStamp($encodedEnvelope[ 'headers' ][ 'stamps' ][ BusNameStamp::class ]);
         $SentStamp = new SentStamp($encodedEnvelope[ 'headers' ][ 'stamps' ][ SentStamp::class ][ 'senderClass' ],
                                    $encodedEnvelope[ 'headers' ][ 'stamps' ][ SentStamp::class ][ 'senderAlias' ]);
@@ -61,7 +61,7 @@ final class DomainEventMessengerTransportSerializer implements SerializerInterfa
                                  'version'     => $Message->getVersion(),
                                  'aggregateId' => $Message->getAggregateId(),
                                  'stamps'      => $Stamps ];
-        $Encode[ 'body' ]    = json_encode($Message->serialize());
+        $Encode[ 'body' ]    = $this->serializer->serialize($Message, 'json', [ 'group' => 'serializable' ]);
         return $Encode;
     }
 }

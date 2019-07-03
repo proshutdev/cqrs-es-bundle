@@ -40,7 +40,7 @@ final class DocumentEventStore {
                 ->setCreated(new \DateTimeImmutable())
                 ->setVersion($eventStream->getVersion())
                 ->setEvent(get_class($eventStream))
-                ->setPayload(json_encode($eventStream->serialize()));
+                ->setPayload($this->serializer->serialize($eventStream, 'json', [ 'group' => 'serializable' ]));
             $this->documentManager->persist($Row);
         }
         try {
@@ -60,7 +60,8 @@ final class DocumentEventStore {
             /**
              * @var DomainEventInterface $Event
              */
-            $Event = $eventStream->getEvent()::deserialize(json_decode($eventStream->getPayload(), true), $eventStream->getGuid());
+            $Event =
+                $this->serializer->deserialize($eventStream->getPayload(), $eventStream->getEvent(), 'json', [ 'group' => 'serializable' ]);
             $Event->withVersion($eventStream->getVersion());
             $Events[] = $Event;
         }

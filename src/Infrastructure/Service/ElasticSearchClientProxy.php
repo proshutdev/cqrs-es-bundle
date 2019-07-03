@@ -40,8 +40,12 @@ class ElasticSearchClientProxy {
     public function search( array $params ) {
         $Response = [ 'hits'  => [],
                       'total' => 0 ];
+        $Result = [];
         $Client   = $this->create();
-        $Result   = $Client->search($params);
+        try {
+            $Result = $Client->search($params);
+        } catch (\Exception $e) {
+        }
         if ($Result) {
             $Response[ 'hits' ]  = array_map(function ( $hit ) {
                 return array_merge([ 'id' => $hit[ '_id' ] ], $hit[ '_source' ]);

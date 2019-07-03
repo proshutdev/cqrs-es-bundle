@@ -33,17 +33,4 @@ interface DomainEventInterface {
      * @return int
      */
     public function getVersion(): int;
-
-    /**
-     * @return array
-     */
-    public function serialize(): array;
-
-    /**
-     * @param array  $data
-     * @param string $id
-     *
-     * @return mixed
-     */
-    public static function deserialize( array $data, string $id );
 }

@@ -6,6 +6,10 @@
 */
 
 namespace Proshut\CQRSBundle\Aggregate;
+
+use Proshut\CQRSBundle\Event\DomainEventInterface;
+use Symfony\Component\Serializer\Annotation\Groups;
+
 /**
  * Trait AggregateChangedTrait
  * @package Proshut\CQRSBundle\Aggregate
@@ -14,6 +18,7 @@ trait AggregateChangedTrait {
 
     /**
      * @var string
+     * @Groups({"serializable"})
      */
     private $aggregateId;
     /**
@@ -51,6 +56,16 @@ trait AggregateChangedTrait {
      */
     public function getAggregateId(): string {
         return $this->aggregateId;
+    }
+
+    /**
+     * @param string $aggregateId
+     *
+     * @return DomainEventInterface
+     */
+    public function setAggregateId( string $aggregateId ):self {
+        $this->aggregateId = $aggregateId;
+        return $this;
     }
 
     /**

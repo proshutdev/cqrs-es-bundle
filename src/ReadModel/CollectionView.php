@@ -42,7 +42,7 @@ class CollectionView {
         foreach ($data[ 'hits' ] as $member) {
             $Object         = $this->denormalizer->denormalize($member, $fqcn, 'array');
             $this->member[] = [ "@id" => sprintf("%s/%s", $this->requestUri, $Object->getId()) ] + [ '@type' => $this->resource ] +
-                $this->normalizer->normalize($Object, 'array', [ 'group' => sprintf("%s_collection", strtolower($this->resource)) ]);
+                $this->normalizer->normalize($Object, 'array', [ 'group' => $this->getGroup() ?: sprintf("%s_collection", strtolower($this->resource))  ]);
         }
         return $this;
     }
