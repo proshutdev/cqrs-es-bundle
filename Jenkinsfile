@@ -9,7 +9,7 @@ pipeline {
     stage('Build') {
       steps {
         echo 'build Step'
-        mail(subject: 'test', body: 'test', from: 'jenkins', to: 'hamid.udc2gmail.com')
+        mail(subject: 'test', body: 'test', from: 'jenkins', to: 'hamid.udc@gmail.com')
       }
     }
     stage('Test') {
