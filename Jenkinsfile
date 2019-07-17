@@ -8,8 +8,8 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        echo 'build Step'
-        mail(subject: 'test', body: 'test', from: 'jenkins', to: 'hamid.udc@gmail.com')
+        echo 'building '
+        sh 'printenv'
       }
     }
     stage('Test') {
